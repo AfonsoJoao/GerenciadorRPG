@@ -60,7 +60,7 @@
                                         <!-- Label -->
                                         <font color="#37474f"><h3 class="pb-2 pt-1"><i class="ra ra-crossed-swords"></i><?php echo $campanha->nomeCampanha; ?></h3></font>
                                         <!-- Text -->
-                                        <p class="card-text"><?php echo $campanha->idCampanha; ?></p>
+                                        <p class="card-text"><?php echo $campanha->descricaoCampanha; ?></p>
                                         <!-- Button -->
                                         <a class="btn blue-grey darken-3 lighten-4"><font color="white">Jogar</font></a>
 
