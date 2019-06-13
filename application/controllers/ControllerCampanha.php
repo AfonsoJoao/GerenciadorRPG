@@ -21,4 +21,14 @@ class ControllerCampanha extends CI_Controller {
         $this->load->view('estrutura/rodapeHome');
     }
 
+    public function abrirCampanha(){
+        $this->load->Model('modelCampanha', '', TRUE);
+        $this->load->Model('modelPersonagem', '', TRUE);
+        $dados['campanha'] = $this->modelCampanha->abrirCampanha($this->uri->segment(3));
+        $dados['personagem'] = $this->modelPersonagem->listarPersonagens();
+        $this->load->view('estrutura/cabecalhoHome');
+        $this->load->view('corpo/corpoCampanha', $dados);
+        $this->load->view('estrutura/rodapeHome');
+    }
+
 }

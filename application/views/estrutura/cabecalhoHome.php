@@ -34,7 +34,7 @@
         <style id='woocommerce-inline-inline-css' type='text/css'>.woocommerce form .form-row .required { visibility: visible; }</style>
         <link rel='stylesheet' id='wsl-widget-css'  href='https://mdbootstrap.com/wp-content/plugins/wordpress-social-login/assets/css/style.css?ver=5.2.1' type='text/css' media='all' />
         <link rel='stylesheet' id='compiled.css-css'  href='https://mdbootstrap.com/wp-content/themes/mdbootstrap4/css/compiled-4.8.2.min.css?ver=4.8.2' type='text/css' media='all' />
-        <link rel="shortcut icon" href="https://mdbootstrap.com/wp-content/themes/mdbootstrap4/favicon.ico" />
+        <link rel="shortcut icon" href="<?php echo base_url('/img/icons/siteIcon')?>" />
         <link rel="canonical" href="https://mdbootstrap.com/docs/jquery/forms/textarea/" />
         
         <!-- css dos icones de rpg -->

@@ -1,8 +1,9 @@
+<?php foreach ($campanha as $campanha) { ?>
 <body id="page-top">
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg blue-grey darken-3 darken-2 text-uppercase fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">Gerenciador RPG</a>
+            <a class="navbar-brand js-scroll-trigger" href="#page-top"><?php echo $campanha->nomeCampanha?></a>
             <button class="navbar-toggler navbar-toggler-right text-uppercase font-weight-bold bg-link text-white rounded" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 Menu
                 <i class="fas fa-bars"></i>
@@ -10,7 +11,7 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto">
                     <li class="mx-0 mx-lg-1">
-                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#addCampanha"><font color="white">Adicionar campanha</font></a>
+                        <a class="nav-link py-3 px-0 px-lg-3 rounded js-scroll-trigger" href="#listaMonstros"><font color="white">Lista de montros</font></a>
                     </li>
                 </ul>
             </div>
@@ -22,8 +23,7 @@
         <div class="container d-flex align-items-center flex-column">
 
             <!-- Masthead Heading -->
-            <h1 class="masthead-heading text-uppercase mb-0">Selecionar Campanha</h1>
-
+            <h1 class="masthead-heading text-uppercase mb-0">Ficha dos personagens</h1>
             <!-- Icon Divider -->
             <div class="divider-custom divider-light">
                 <div class="divider-custom-line"></div>
@@ -32,60 +32,30 @@
                 </div>
                 <div class="divider-custom-line"></div>
             </div>
-            <!-- Card Narrower = cards de campanhas -->
-            <div class="container">
-                <div class="row justify-content-md-center">
-                    <?php
-                    if (isset($campanha)) {
-                        foreach ($campanha as $campanha) {
-                            ?>
-                            <div class="col-lg-4 col-md-12 mb-4">
-                                <div class="card card-cascade narrower">
-                                    <!-- Card image -->
-                                    <div class="view view-cascade overlay">
-                                        <img class="card-img-top" src="<?php echo base_url('/img/temas/medievalTheme.jpg') ?>" alt="Card image cap">
-                                        <a>
-                                            <div class="mask rgba-white-slight"></div>
-                                        </a>
-                                    </div>
-                                    <br>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">
-                                            <a style="text-decoration:none" href="javascript:func()" onclick="excluirCampanha(<?php echo $campanha->idCampanha; ?>, '<?php echo $campanha->nomeCampanha; ?>')"><i class="fas fa-times"></i></a>
-                                        </span>
-                                    </button>
-                                    <!-- Card content -->
-                                    <div class="card-body card-body-cascade">
-
-                                        <!-- Label -->
-                                        <font color="#37474f"><h3 class="pb-2 pt-1"><i class="ra ra-crossed-swords"></i><?php echo $campanha->nomeCampanha; ?></h3></font>
-                                        <!-- Text -->
-                                        <p class="card-text"><?php echo $campanha->descricaoCampanha; ?></p>
-                                        <!-- Button -->
-                                        <a href="<?php echo base_url("ControllerCampanha/abrirCampanha/$campanha->idCampanha"); ?>" class="btn blue-grey darken-3 lighten-4"><font color="white">Jogar</font></a>
-
-                                    </div>
-
-                                </div>
-                            </div>
-                            <?php
-                        }
-                    }
-                    ?>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Card Narrower -->
+<!-- Espaço para a parte das fichas -->
+            <?php echo form_open('ControllerPersonagem/gravarPersonagem'); ?>
+            <input type="text" name="nomePersonagem" class="form-control validate" required="" placeholder="nome">
+            <input type="text" name="classe" class="form-control validate" required="" placeholder="classe">
+            <input type="text" name="nivel" class="form-control validate" required="" placeholder="nivel">
+            <input type="text" name="raça" class="form-control validate" required="" placeholder="raça">
+            <input type="text" name="alinhamento" class="form-control validate" required="" placeholder="alinhamento">
+            <input type="hidden" name="idCampanha" class="form-control validate" value="<?php echo $campanha->idCampanha ?>">
+            <input type="hidden" name="xp" class="form-control validate" value="0">
+            <button class="btn blue-grey darken-3 lighten-4" href="#">
+                                <font color="white"><i class="ra ra-triforce"></i>
+                                Criar Personagem</font>
+                            </button>
+            <?php echo form_close(); ?>
+<!-- Espaço para a parte das fichas -->
 </div>
 </header>
 
 <!-- Campanha Section -->
-<section class="page-section portfolio" id="addCampanha">
+<section class="page-section portfolio" id="listaMonstros">
     <div class="container">
 
         <!-- Portfolio Section Heading -->
-        <h2 class="page-section-heading text-center text-uppercase mb-0"><font color="#37474f">Adicionar nova campanha</font></h2>
+        <h2 class="page-section-heading text-center text-uppercase mb-0"><font color="#37474f">Lista de monstros</font></h2>
 
         <!-- Icon Divider -->
         <div class="divider-custom">
@@ -95,47 +65,9 @@
             </div>
             <div class="divider-custom-line"></div>
         </div>
-
-        <!-- Portfolio Grid Items -->
-        <div class="row justify-content-md-center">
-
-            <!-- Campanha Medieval -->
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#medievalModal">
-                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div class="portfolio-item-caption-content text-center text-white">
-                            <i class="fas fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img class="img-fluid" src="<?php echo base_url('/img/temas/medievalTheme.jpg') ?>" alt="">
-                </div>
-            </div>
-            <!-- Campanha CyberPunk -->
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#cyberpunkModal">
-                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div class="portfolio-item-caption-content text-center text-white">
-                            <i class="fas fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img class="img-fluid" src="<?php echo base_url('/img/temas/cyberpunkTheme.jpg') ?>" alt="">
-                </div>
-            </div>
-            <!-- Campanha Apocalipse Zumbi -->
-            <div class="col-md-6 col-lg-4">
-                <div class="portfolio-item mx-auto" data-toggle="modal" data-target="#zombieModal">
-                    <div class="portfolio-item-caption d-flex align-items-center justify-content-center h-100 w-100">
-                        <div class="portfolio-item-caption-content text-center text-white">
-                            <i class="fas fa-plus fa-3x"></i>
-                        </div>
-                    </div>
-                    <img class="img-fluid" src="<?php echo base_url('/img/temas/zombieTheme.jpg') ?>" alt="">
-                </div>
-            </div>
-        </div>
-        <!-- /.row -->
-
-    </div>
+<!-- Espaço para lista de monstros -->
+Monstro eae kkkk
+<!-- Espaço para lista de monstros -->
 </section>
 <!-- Copyright Section -->
 <section class="copyright blue-grey darken-3 py-4 text-center text-white">
@@ -324,4 +256,5 @@ if (isset($situacao)) {
     </script>
     <?php
     unset($situacao);
+}
 }

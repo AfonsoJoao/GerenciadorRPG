@@ -14,4 +14,12 @@ class ModelCampanha extends CI_Model {
         return;
     }
 
+    public function abrirCampanha($id) {
+        $resultado = $this->db->get_where('campanha', array('idCampanha' => $id));
+        if ($resultado->num_rows() > 0) {
+            return $resultado->result();
+        }
+        return;
+    }
+
 }
